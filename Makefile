@@ -367,18 +367,8 @@ KBUILD_CPPFLAGS := -D__KERNEL__
 KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
 		   -fno-strict-aliasing -fno-common \
 		   -Werror-implicit-function-declaration \
-		   -Wno-format-security -Wno-array-bounds \
-		   -fno-delete-null-pointer-checks \
-		   -mtune=cortex-a9 -marm -march=armv7-a -fno-pic -mfpu=neon
-		   -ffast-math -funswitch-loops -fpredictive-commoning -fgcse-after-reload \
-		   -fmodulo-sched -fmodulo-sched-allow-regmoves \
-		   -fipa-cp-clone -pipe \
-		   -fgraphite-identity -fsched-spec-load \
-		   -floop-interchange -floop-strip-mine -floop-block \
-		   -fpredictive-commoning -fgcse-after-reload -ftree-vectorize -fipa-cp-clone \
-		   -fmodulo-sched -fmodulo-sched-allow-regmoves \
-		   -ftree-loop-distribution -floop-parallelize-all -ftree-parallelize-loops=4
-
+		   -Wno-format-security \
+		   -fno-delete-null-pointer-checks
 KBUILD_AFLAGS_KERNEL :=
 KBUILD_CFLAGS_KERNEL :=
 KBUILD_AFLAGS   := -D__ASSEMBLY__
@@ -575,11 +565,8 @@ KBUILD_CFLAGS	+= -O2
 endif
 
 ifdef CONFIG_CC_CHECK_WARNING_STRICTLY
-KBUILD_CFLAGS	+= -fdiagnostics-show-option \
-		   -Wno-error=unused-function \
-		   -Wno-error=unused-variable \
-		   -Wno-error=unused-value \
-		   -Wno-error=unused-label
+KBUILD_CFLAGS	+= -fdiagnostics-show-option -Werror \
+		   -Wno-unused
 endif
 
 include $(srctree)/arch/$(SRCARCH)/Makefile
